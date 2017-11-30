@@ -1,0 +1,34 @@
+{
+Male?(yes-0 , no-1)
+{
+Does he thin?(yes-0 , no-1)
+{
+Is he young?(yes-0 , no-1)
+{
+Is he wearing glasses?(yes-0 , no-1)
+{
+Golovko
+}
+{
+Zhitluhin
+}
+}
+{
+Podlesny
+}
+}
+{
+Dedinsky
+}
+}
+{
+Is she a programmer?(yes-0 , no-1)
+{
+Desbisheva
+}
+{
+Burlutchaya
+}
+}
+}
+-1
