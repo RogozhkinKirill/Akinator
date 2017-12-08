@@ -1,7 +1,7 @@
 {
 Male?(yes-0 , no-1)
 {
-Does he thin?(yes-0 , no-1)
+Is he thin?(yes-0 , no-1)
 {
 Is he young?(yes-0 , no-1)
 {
@@ -20,7 +20,7 @@ Zhitluhin
 }
 }
 {
-Podlesny
+Подлесный
 }
 }
 {
@@ -35,7 +35,13 @@ Kirill
 }
 }
 {
+Programmer?(yes-0 , no-1)
+{
 Dedinsky
+}
+{
+Ovchinkin
+}
 }
 }
 }

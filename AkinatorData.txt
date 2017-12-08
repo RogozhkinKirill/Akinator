@@ -1,7 +1,7 @@
 {
 Male?(yes-0 , no-1)
 {
-Does he thin?(yes-0 , no-1)
+Is he thin?(yes-0 , no-1)
 {
 Is he young?(yes-0 , no-1)
 {
@@ -10,7 +10,13 @@ Is he wearing glasses?(yes-0 , no-1)
 Golovko
 }
 {
+Is he student?(yes-0 , no-1)
+{
+Rizhov Vladislav
+}
+{
 Zhitluhin
+}
 }
 }
 {
@@ -18,13 +24,37 @@ Podlesny
 }
 }
 {
+Student?(yes-0 , no-1)
+{
+He is from Problems?(yes-0 , no-1)
+{
+Jora
+}
+{
+Kirill
+}
+}
+{
+Programmer?(yes-0 , no-1)
+{
 Dedinsky
+}
+{
+Ovchinkin
+}
+}
 }
 }
 {
 Is she a programmer?(yes-0 , no-1)
 {
+Student?(yes-0 , no-1)
+{
+Даша Котова
+}
+{
 Desbisheva
+}
 }
 {
 Burlutchaya

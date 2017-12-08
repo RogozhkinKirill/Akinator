@@ -2,9 +2,12 @@
 #define AKINATOR_AKINATORLIB_H
 
 #include "TreeLib.h"
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h>
 
-#define LEFT 0
-#define RIGHT 1
+const int LEFT = 0;
+const int RIGHT = 1;
 
 class ArrStrings
 {

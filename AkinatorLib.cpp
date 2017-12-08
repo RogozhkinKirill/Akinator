@@ -1,61 +1,59 @@
 #include "AkinatorLib.h"
-#include <stdlib.h>
-#include <string.h>
 
 #define  print(x)   //printf("Line %d %d\n" , __LINE__ , x + 1)
 
 int Akinator()
 {
-    Start:
+    setlocale(LC_ALL , "Russian");
 
-    FILE* Akinator_Data = fopen("C:\\Programme\\Akinator\\Akinator.txt" , "r");
-    if(!Akinator_Data)
-    {
-        printf("ERROR. Pointer on Akinator = NULL\n");
-        return 1;
-    }
-
-    ArrStrings* Arr = StringsCreator(Akinator_Data);
-
-    Tree* AkinTree = CreateTree( Arr);
-
-    Node* Branch = AkinTree->head;
-    puts(Branch->value);
-    while(Branch->right)
-    {
-        int ans = 0;
-        scanf("%d" , &ans);
-        if (ans == LEFT)
-        {
-            Branch = Branch->left;
-            puts(Branch->value);
-        }
-        else
-        {
-            Branch = Branch->right;
-            puts(Branch->value);
-        }
-    }
-
-    printf("Was the answer correct?(yes-0 , no - 1)\n");
-    int IsCorrect = 0;
-    scanf("%d" , &IsCorrect);
-    if(IsCorrect == 1)
-    {
-        AddNewAnswer(Akinator_Data , Branch , AkinTree);
-    }
+    int res = 0;
 
     int newGame = 0;
-    printf("Do you want to play again?(yes-0 , no-1)\n");
-    scanf("%d" , &newGame);
-
-    int res = fclose(Akinator_Data);
-    delete Arr;
-    delete AkinTree;
-
-    if(newGame == 0)
+    while (newGame == 0)
     {
-        goto Start;
+        FILE* Akinator_Data = fopen("C:\\Programme\\Akinator\\AkinatorData.txt" , "r");
+        if (!Akinator_Data)
+        {
+            printf("ERROR. Pointer on Akinator = NULL\n");
+            return 1;
+        }
+
+        ArrStrings* Arr = StringsCreator(Akinator_Data);
+
+        Tree* AkinTree = CreateTree(Arr);
+
+        Node* Branch = AkinTree->head;
+        puts(Branch->value);
+    while(Branch->right)
+        {
+            int ans = 0;
+            scanf("%d" , &ans);
+            if (ans == LEFT)
+            {
+                Branch = Branch->left;
+                puts(Branch->value);
+            }
+            else
+            {
+                Branch = Branch->right;
+                puts(Branch->value);
+            }
+        }
+
+        printf("Was the answer correct?(yes-0 , no - 1)\n");
+        int IsCorrect = 0;
+        scanf("%d" , &IsCorrect);
+        if (IsCorrect == 1)
+        {
+            AddNewAnswer(Akinator_Data , Branch , AkinTree);
+        }
+
+        printf("Do you want to play again?(yes-0 , no-1)\n");
+        scanf("%d" , &newGame);
+
+        res = fclose(Akinator_Data);
+        delete Arr;
+        delete AkinTree;
     }
 
     if(res == 0)
@@ -92,7 +90,7 @@ ArrStrings* StringsCreator(FILE* ToStrings)
     pBuffer[LenF] = '\n';
 
 
-    size_t result = fread(pBuffer , sizeof(char) , LenF , ToStrings);
+    int result = fread(pBuffer , sizeof(char) , LenF , ToStrings);
 
 
     int cStr = 0;
@@ -240,47 +238,37 @@ void AddNewAnswer(FILE* AkinatorData , Node* Branch , Tree* AkinTree)
     }
 
     printf("Print your answer\n");
-    char Answer[100];
-    int i = 0;
-    char Elem;
-    while((Elem = getchar()) != '/' )
-    {
-        Answer[i++] = Elem;
-    }
-    Answer[i] = '\0';
+    char Answer[150];
+    gets(Answer);
+    gets(Answer);
 
-    printf("Print difference between %s and %s\n" , Branch->value , Answer + 1);
+    printf("Print difference between %s and %s\n" , Branch->value , Answer);
 
     char newString[150];
-    int j = 0;
-    char Letter;
-    while((Letter = getchar()) != '/')
-    {
-        newString[j++] = Letter;
-    }
-    newString[j] = '\0';
+    gets(newString);
 
     int ans = 0;
-    printf("If answer on \"Is it %s\" is yes, is it %s?(yes-0 , no-1)\n" , newString + 1 , Answer + 1);
+    printf("If answer on \"Is it %s\" is yes, is it %s?(yes-0 , no-1)\n" , newString , Answer);
     scanf("%d" , &ans);
-    strcat(newString + 1 , "?(yes-0 , no-1)");
+    strcat(newString , "?(yes-0 , no-1)");
     if(ans == 0)
     {
-        Branch->AddNodeLeft(Answer + 1);
+        Branch->AddNodeLeft(Answer);
         Branch->AddNodeRight(Branch->value);
-        Branch->value = (newString + 1);
-        puts(Branch->value);
+        Branch->value = (newString);
     }
     else
     {
-        Branch->AddNodeRight(Answer + 1);
+        Branch->AddNodeRight(Answer);
         Branch->AddNodeLeft(Branch->value);
-        Branch->value = newString + 1;
+        Branch->value = newString;
     }
 
-    FILE* AkinRecord = fopen("C:\\Programme\\Akinator\\Akinator.txt" , "w");
+    FILE* AkinRecord = fopen("C:\\Programme\\Akinator\\AkinatorData.txt" , "w");
     AkinTree->WriteBinTreeToFile(AkinRecord);
     fclose(AkinRecord);
 
     return;
 }
+
+#undef print(x)
