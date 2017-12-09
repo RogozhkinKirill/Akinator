@@ -15,6 +15,7 @@ int Akinator()
         if (!Akinator_Data)
         {
             printf("ERROR. Pointer on Akinator = NULL\n");
+            fclose(Akinator_Data);
             return 1;
         }
 
@@ -24,7 +25,7 @@ int Akinator()
 
         Node* Branch = AkinTree->head;
         puts(Branch->value);
-    while(Branch->right)
+        while(Branch->right)
         {
             int ans = 0;
             scanf("%d" , &ans);
@@ -67,7 +68,6 @@ int Akinator()
 ArrStrings* StringsCreator(FILE* ToStrings)
 {
     printf("Text file operations\n");
-
 
 
     if(ToStrings == NULL)
